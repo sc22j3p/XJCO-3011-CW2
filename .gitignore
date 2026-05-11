@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+pytest-cache-files-*/
+.tmp/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+
+# Generated coursework data
+data/*.json
+data/*.pkl
+data/*.pickle
+
+# Local editor/OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
