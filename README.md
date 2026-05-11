@@ -170,6 +170,8 @@ Multi-word searches require all query terms to appear on the returned page. Resu
 
 ## GenAI Declaration
 
+I used GenAI tools during this coursework to help interpret the assignment brief, plan the repository structure, draft parts of the implementation, and prepare tests and documentation. I used the suggestions as assistance rather than submitting them without checking.
+
 ### How GenAI Was Used
 
 | Area | Use | Details |
@@ -179,10 +181,6 @@ Multi-word searches require all query terms to appear on the returned page. Resu
 | **Search** | Set intersection logic | Copilot completed the `set.intersection(*page_sets)` line after I wrote the comment `# AND query`. |
 | **Tests** | Test scaffolding | I used Copilot to generate initial test skeletons, then manually added edge cases (e.g., empty queries, non‑HTML responses, missing files). |
 | **README & Documentation** | Drafting | AI assisted with rephrasing instructions and generating the project structure tree. I reviewed and adjusted everything for accuracy. |
-
-I used GenAI tools during this coursework to help interpret the assignment brief, plan the repository structure, draft parts of the implementation, and prepare tests and documentation. I used the suggestions as assistance rather than submitting them without checking.
-
-GenAI was useful for breaking the task into modules: `crawler.py`, `indexer.py`, `search.py`, and `main.py`. It also helped with ideas for the inverted index structure, command-line handling, JSON storage, and pytest test cases. These suggestions saved time when creating the first version of the project.
 
 However, I had to review and correct the AI-assisted work. One important example was the crawler. The initial approach followed every internal link on the website, including author pages, tag pages, and the login page. Because the coursework requires a 6-second politeness delay between requests, this made the `build` command take much longer than expected. After testing the program on the real target website, I changed the default crawl scope so that it follows the quote listing pages only. This produced 10 crawled pages, which is appropriate for the coursework target.
 
