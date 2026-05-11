@@ -1,5 +1,4 @@
 from pathlib import Path
-
 from src.crawler import CrawledPage
 from src.indexer import build_index, load_index, save_index, tokenize
 
