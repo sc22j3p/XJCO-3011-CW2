@@ -1,5 +1,4 @@
 import pytest
-
 from src.crawler import CrawlError, WebsiteCrawler
 
 
