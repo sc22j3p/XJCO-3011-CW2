@@ -33,6 +33,7 @@ The tool will crawl the website, build an inverted index, save and load that ind
 ```text
 search-engine-tool/
   src/
+    _init_.py
     crawler.py
     indexer.py
     search.py
@@ -40,11 +41,15 @@ search-engine-tool/
   tests/
     test_crawler.py
     test_indexer.py
+    test_main.py
     test_search.py
   data/
     README.md
-  requirements.txt
+    index.json
+  .gitgnore
   README.md
+  pytest.ini
+  requirements.txt
 ```
 
 ## Installation
