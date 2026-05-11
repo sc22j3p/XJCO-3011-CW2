@@ -1,5 +1,4 @@
 import pytest
-
 from src.crawler import CrawledPage
 from src.indexer import build_index
 from src.search import find_pages, get_postings
