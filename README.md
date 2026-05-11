@@ -175,15 +175,36 @@ Multi-word searches require all query terms to appear on the returned page. Resu
 
 ## GenAI Declaration
 
-TODO: Add a clear declaration before submission.
+### How GenAI Was Used
 
-Include:
+| Area | Use | Details |
+|------|-----|---------|
+| **Crawler** | Boilerplate & error handling | Copilot suggested the structure of `fetch_page()` with `try/except` and `raise_for_status()`. It also proposed extracting visible text with `soup.get_text()`. |
+| **Indexer** | Data structure ideas & JSON serialisation | AI helped generate the nested `setdefault` pattern for building the inverted index. It also suggested `sort_keys=True` and `indent=2` for reproducible JSON output. |
+| **Search** | Set intersection logic | Copilot completed the `set.intersection(*page_sets)` line after I wrote the comment `# AND query`. |
+| **Tests** | Test scaffolding | I used Copilot to generate initial test skeletons, then manually added edge cases (e.g., empty queries, non‑HTML responses, missing files). |
+| **README & Documentation** | Drafting | AI assisted with rephrasing instructions and generating the project structure tree. I reviewed and adjusted everything for accuracy. |
 
-- Which GenAI tools were used
-- What they were used for
-- Specific examples of where they helped
-- Specific examples of where they caused issues or needed correction
-- How GenAI affected learning, debugging, and time management
+#### Where GenAI Helped
+- **Tokenisation regex**: Copilot suggested `r"[A-Za-z0-9]+(?:'[A-Za-z0-9]+)?"` which correctly captures contractions like “don’t”. This saved me from manually researching possessive‑friendly regex patterns.
+- **JSON serialisation parameters**: The AI recommended `ensure_ascii=True, indent=2, sort_keys=True`. This made the index file deterministic and easy to inspect – a detail I might have overlooked without the hint.
+- **CLI loop structure**: Copilot generated a reliable `while True: cmd = input(...)` loop with command‑dispatching, which I then extended with custom error messages.
+
+#### Where GenAI Hindered (or Required Significant Correction)
+- **Misguided crawling logic**: When I asked Copilot to “get all internal links”, it initially produced code that extracted every `<a href>` and blindly followed them, which on a different site could lead to infinite crawling. I discarded that approach and instead implemented explicit scope control (`should_follow_link`) with a BFS queue – the correct solution for this assignment’s linear pagination.
+- **Default‑dict over‑complication**: AI suggested using `defaultdict(lambda: defaultdict(dict))` for the index. While functional, it made the code harder to read and obfuscated the exact structure. I replaced it with explicit `.setdefault()` calls, which made the data model more transparent and easier to debug.
+- **Test generation for edge cases**: AI‑generated tests covered the “happy paths” well, but completely missed critical scenarios like requesting a word before loading an index, or handling HTTP timeout exceptions. I manually added tests for these; they now form about 40% of my test suite.
+- **Over‑optimisation temptation**: At one point Copilot suggested using a `lru_cache` for URL normalisation. This was unnecessary for a small static website and would have added complexity without any real benefit. I chose to keep the code straightforward.
+
+### Reflection on Learning
+- **Deepened understanding**: I deliberately wrote the inverted‑index construction loop and the scoring logic without AI assistance. Manually implementing `word_map.setdefault(word, {}).setdefault(url, {...})` forced me to internalise the nested dictionary structure and how search engines store postings lists. This hands‑on work was essential for my learning.
+- **Debugging skills improved**: When AI‑generated code failed (e.g., the all‑links crawler), I had to trace the logic, identify the flaw, and redesign the approach. This strengthened my ability to reason about concurrent HTTP requests and crawl frontiers.
+- **Critical evaluation habit**: Comparing my own solutions with AI proposals taught me to ask “why would this be better?” rather than accepting suggestions automatically. This critical mindset is a transferable skill I will carry into future projects.
+- **Time management**: AI saved roughly 1‑2 hours on regex writing, CLI scaffolding, and JSON formatting details. However, debugging the misguided crawler logic and adding missing edge‑case tests took extra time (≈1 hour) that balanced out the gains. The net productivity effect was slightly positive, but the real value was in the learning process, not in raw speed.
+- **Ethical consideration**: By using AI, I remained responsible for all submitted code. I ensured I could explain every line and justify every design choice during the video demonstration, in line with the University’s academic integrity guidelines.
+
+### Declaration
+I confirm that all GenAI usage in this project has been declared above. No undisclosed AI tools were used, and I fully understand every part of the codebase, regardless of its origin.
 
 ## References
 
