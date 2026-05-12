@@ -177,7 +177,7 @@ I used GenAI tools during this coursework to help interpret the assignment brief
 | Area | Use | Details |
 |------|-----|---------|
 | **Crawler** | Boilerplate & error handling | Copilot suggested the structure of `fetch_page()` with `try/except` and `raise_for_status()`. It also proposed extracting visible text with `soup.get_text()`. |
-| **Indexer** | Data structure ideas & JSON serialisation | AI helped generate the nested `setdefault` pattern for building the inverted index. It also suggested `sort_keys=True` and `indent=2` for reproducible JSON output. |
+| **Indexer** | Data structure ideas & JSON serialisation | AI suggested the nested `setdefault` pattern, but I rewrote and tested the inverted-index construction loop myself until I understood how the nested dictionary and postings lists worked. It also suggested `sort_keys=True` and `indent=2` for reproducible JSON output. |
 | **Search** | Set intersection logic | Copilot completed the `set.intersection(*page_sets)` line after I wrote the comment `# AND query`. |
 | **Tests** | Test scaffolding | I used Copilot to generate initial test skeletons, then manually added edge cases (e.g., empty queries, non‑HTML responses, missing files). |
 | **README & Documentation** | Drafting | AI assisted with rephrasing instructions and generating the project structure tree. I reviewed and adjusted everything for accuracy. |
